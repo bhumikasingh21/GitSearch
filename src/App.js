@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Card from './card/Card';
 
 function App() {
+  const [data,setData] = React.useState()
+  const [userName,setUserName] = React.useState("")
+  
+  const getData=()=>{
+    fetch(`https://api.github.com/users/${userName}`)
+    .then((Response)=>Response.json())
+    .then((Result=>{
+        setData(Result)
+    }))
+  }
+  console.log(data)
+
+  const HandleChange = (event)=>{
+      setUserName(event.target.value)
+  }
+
+
+
+  React.useEffect(()=>{
+  getData();
+  },[userName])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Git Profile Search</h2>
+      <div>
+      <input type="text" placeholder = "Enter username ..." className='input' onChange={HandleChange} value={userName}/>
+      <button>Search</button>
+      </div>
+      <div>
+        <Card data={data}/>
+      </div>
     </div>
   );
 }

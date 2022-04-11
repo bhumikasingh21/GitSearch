@@ -1,0 +1,35 @@
+.card{
+    width:600px;
+    height: auto;
+    border:1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.card .name{
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.card img{
+    width: 100%;
+    height: 500px;
+    cursor: pointer;
+}
+
+.repo{
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.gitbtn{
+    display: flex;
+    gap: 10px;
+}
