@@ -3,7 +3,7 @@ import './App.css';
 import Card from './card/Card';
 
 function App() {
-  const [data,setData] = React.useState()
+  const [data,setData] = React.useState({})
   const [userName,setUserName] = React.useState("")
   
   const getData=()=>{
@@ -15,15 +15,27 @@ function App() {
   }
   console.log(data)
 
+  let timeout =null ;
+
   const HandleChange = (event)=>{
-      setUserName(event.target.value)
+    setUserName(event.target.value)
   }
 
-
-
   React.useEffect(()=>{
-  getData();
+    clearTimeout(timeout);
+    timeout= setTimeout(() => {
+      console.log(`this is searchvalue ${userName}`)
+      if(userName){
+        getData();
+      }
+          }, 1000);
+      return ()=>clearTimeout(timeout)
   },[userName])
+
+
+  // React.useEffect(()=>{
+  // getData();
+  // },[userName])
 
   return (
     <div className="App">
